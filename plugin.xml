@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-lnsoft-lfmapselect" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>LFMapSelectPlugin</name>
+    <js-module name="callNativeMapApp" src="www/LFMapSelectPlugin.js">
+        <clobbers target="navigator.lnsoft"/>
+    </js-module>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="LFMapSelectPlugin">
+                <param name="ios-package" value="LFMapSelectPlugin"/>
+            </feature>
+        </config-file>
+        <source-file src="src/ios/LFMapSelectPlugin.m"/>
+    </platform>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="LFMapSelectPlugin">
+                <param name="android-package" value="com.lnsoft.cordovaPlugins.LFMapSelectPlugin"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/LFMapSelectPlugin.java"
+                     target-dir="src/com/lnsoft/cordovaPlugins"/>
+    </platform>
+</plugin>
