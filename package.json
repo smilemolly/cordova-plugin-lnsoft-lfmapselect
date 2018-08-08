@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-lnsoft-lfmapselect",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Apache Cordova 插件: 唤醒手机原生地图应用，实现导航功能",
   "cordova": {
     "id": "cordova-plugin-lnsoft-lfmapselect",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ssbunny/cordova-plugin-tbs.git"
+    "url": "git+https://github.com/ssbunny/cordova-plugin-lnsoft-lfmapselect.git"
   },
   "keywords": [
     "ecosystem:cordova",
