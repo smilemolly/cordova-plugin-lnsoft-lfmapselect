@@ -28,17 +28,6 @@
 
 - (void)_showSheetViewWithModel:(LFMapPluginModel *)model{
     
-//    LFTitleModel * titleModel = [LFTitleModel new];
-//    LFCustomSheet * sheet = [[LFCustomSheet alloc]initSheetText:@[@"f",@"f"] sheetTitleModel:nil clickBlock:^(NSString *sheetTitle) {
-//
-//    }];
-//    [sheet show];
-    
-//    LFMapPluginModel * testMolel = [LFMapPluginModel new];
-//    testMolel.latitude = 23.1066805;
-//    testMolel.longitude = 113.3245904;
-//    testMolel.cityName = @"广州塔";
-    
     [self navigationButtonDidClick:model];
     
 }
@@ -68,11 +57,14 @@
         }];
         [alertController addAction:alertAction2];
     }
-    
+    NSString * path = [[NSBundle mainBundle]pathForResource:@"Info" ofType:@"plist"];
+    NSDictionary * dict = [[NSDictionary alloc]initWithContentsOfFile:path];
+    NSString * appName = dict[@"CFBundleDisplayName"];
+        
     //高德地图
     if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"iosamap://"]]) {
         UIAlertAction * alertAction3 = [UIAlertAction actionWithTitle:@"高德地图" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSString *urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&lat=%f&lon=%f&dev=0&style=2",@"", @"", location.latitude,location.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *urlString = [[NSString stringWithFormat:@"iosamap://navi?sourceApplication=%@&backScheme=%@&lat=%f&lon=%f&dev=0&style=2&poiname=%@",appName,appName, location.latitude,location.longitude,model.cityName] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
             
         }];

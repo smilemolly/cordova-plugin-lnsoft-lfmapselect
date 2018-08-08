@@ -24,6 +24,7 @@ public class LFMapSelectPlugin extends CordovaPlugin {
 
     private static final String Baidu="com.baidu.BaiduMap";
     private static final String Gaode="com.autonavi.minimap";
+    private static final String Tengxun="com.tencent.map";
     
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -76,6 +77,9 @@ public class LFMapSelectPlugin extends CordovaPlugin {
                                         case "高德地图":
                                             toGaodeApp(latitude, longitude, cityName);
                                             break;
+                                        case "腾讯地图":
+                                            toTengxunApp(latitude,longitude,cityName);
+                                            break;
                                         default:
                                             break;
                                     }
@@ -96,7 +100,7 @@ public class LFMapSelectPlugin extends CordovaPlugin {
         if (packageInfos != null) {
             for (int i = 0; i < packageInfos.size(); i++) {
                 String packName = packageInfos.get(i).packageName;
-                if (packName.equals(Gaode) || packName.equals(Baidu)) {
+                if (packName.equals(Gaode) || packName.equals(Baidu)||packName.equals(Tengxun)) {
                     packageNames.add(packName);
                 }
             }
@@ -110,6 +114,9 @@ public class LFMapSelectPlugin extends CordovaPlugin {
         }
         if (Gaode.equals(packageName)) {
             return "高德地图";
+        }
+        if (Tengxun.equals(packageName)) {
+            return "腾讯地图";
         }
         return "";
     }
@@ -132,4 +139,12 @@ public class LFMapSelectPlugin extends CordovaPlugin {
         }
     }
 
+    public void toTengxunApp(String latitude,String longitude,String cityName){
+        try {
+            Intent intent = Intent.parseUri("qqmap://map/routeplan?type=drive&to=" + cityName + "&tocoord=" + latitude+ "," +longitude  + "&referer=myapp",0);
+            cordova.getActivity().startActivity(intent);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
 }
